@@ -2,8 +2,8 @@
 
 ### TODO:
 *1* Dodać odpoqwiednie połączenia między tabelami<br />
-*2* Dodać resztę widoków (views)
-*3* Dodać wyzwalacze (triggery)
+*2* Dodać resztę widoków (views) <br />
+*3* Dodać wyzwalacze (triggery) <br />
 
 
 [![BDmodel.png](https://i.postimg.cc/hP0bBJvB/BDmodel.png)](https://postimg.cc/PPP8b513)
