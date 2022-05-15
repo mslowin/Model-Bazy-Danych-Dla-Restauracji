@@ -6,4 +6,4 @@
 *3* Dodać wyzwalacze (triggery) <br />
 
 
-[![BDmodel.png](https://i.postimg.cc/hP0bBJvB/BDmodel.png)](https://postimg.cc/PPP8b513)
+[![BDmodel.png](https://i.postimg.cc/hP0bBJvB/BDmodel_MySQL.png)](https://postimg.cc/PPP8b513)
