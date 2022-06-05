@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 using Restauracja_Bazy_Danych.Helper;
 using MySql.Data.MySqlClient;
 
@@ -27,8 +28,9 @@ namespace Restauracja_Bazy_Danych
          * 4321 - Barman
          * 5678 - Kucharz
          * 8765 - Kierowca
+         * 0000 - Kierownik
         */
-        private string[] codes = new string[4] { "1234", "4321", "5678", "8765"};
+        private string[] codes = new string[5] { "1234", "4321", "5678", "8765","0000"};
 
         public MainWindow()
         {
@@ -125,6 +127,10 @@ namespace Restauracja_Bazy_Danych
                 {
                     Console.WriteLine("KIEROWCA");
                 }
+                else if (Password == codes[4])
+                {
+                    Console.WriteLine("KIEROWNIK");
+                }
                 else if (pinBox.Password.Length > 0)
                 {
                     _ = MessageBox.Show("Niepoprawne logowanie!", "Wystąpił błąd",
@@ -135,7 +141,9 @@ namespace Restauracja_Bazy_Danych
             {
                 MessageBox.Show("A handled exception just occurred: " + ex.Message, "Exception Sample", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            //test testwindow = new test();
+            test2 testwindow = new test2();
+            this.Content = testwindow.Content;
+
             //testwindow.ShowDialog();
             Console.WriteLine("OK");
         }
