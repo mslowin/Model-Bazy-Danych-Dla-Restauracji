@@ -115,6 +115,23 @@
                 </StackPanel>
             </StackPanel>
         </DataTemplate>
+        <DataTemplate x:Key="UserDataTemplate_short">
+            <StackPanel Orientation="Horizontal" Height="50" HorizontalAlignment="Left" VerticalAlignment="top">
+                <!--tekst-->
+                <StackPanel Orientation="Horizontal" Width="205" HorizontalAlignment="Left" VerticalAlignment="top">
+                    <Border BorderThickness="1" BorderBrush="Black">
+                        <Label Height="30" Width="50" Content="{Binding Cena}" FontSize="12" Padding="15,10,0,0"/>
+                    </Border>
+                    <StackPanel Orientation="Vertical" Width="155" HorizontalAlignment="Left" VerticalAlignment="top">
+                        <Border BorderThickness="1" BorderBrush="Black">
+                            <Label Height="30" Content="{Binding Nazwa}" FontWeight="Bold" FontSize="12"/>
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+        
+        
     </Window.Resources>
 
     <Grid>
@@ -139,7 +156,7 @@
                         <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Column="1" Grid.Row="1" Background="White">
-                        <ScrollViewer x:Name="TaskList" VerticalScrollBarVisibility="Visible">
+                        <ScrollViewer x:Name="TaskList_przystawki" VerticalScrollBarVisibility="Visible">
                             <ItemsControl x:Name="UserList_przystawki" ItemTemplate="{StaticResource UserDataTemplate}" AlternationCount="9999"/>
                         </ScrollViewer>
                     </Grid>
@@ -156,17 +173,23 @@
                 <Grid Background="SteelBlue">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="450"/>
+                        <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="50"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="15"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
+                    <Grid Grid.Column="1" Grid.Row="1" Background="White">
+                        <ScrollViewer x:Name="TaskList_zupy" VerticalScrollBarVisibility="Visible">
+                            <ItemsControl x:Name="UserList_zupy" ItemTemplate="{StaticResource UserDataTemplate}" AlternationCount="9999"/>
+                        </ScrollViewer>
+                    </Grid>
                 </Grid>
             </TabItem>
-
+            
             <TabItem>
                 <TabItem.Header>
                     <TextBlock 
@@ -177,14 +200,20 @@
                 <Grid Background="SteelBlue">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="450"/>
+                        <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="50"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="15"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
+                    <Grid Grid.Column="1" Grid.Row="1" Background="White">
+                        <ScrollViewer x:Name="TaskList_dania_glowne" VerticalScrollBarVisibility="Visible">
+                            <ItemsControl x:Name="UserList_dania_glowne" ItemTemplate="{StaticResource UserDataTemplate}" AlternationCount="9999"/>
+                        </ScrollViewer>
+                    </Grid>
                 </Grid>
             </TabItem>
 
@@ -198,14 +227,20 @@
                 <Grid Background="SteelBlue">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="450"/>
+                        <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="50"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="15"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
+                    <Grid Grid.Column="1" Grid.Row="1" Background="White">
+                        <ScrollViewer x:Name="TaskList_pizza" VerticalScrollBarVisibility="Visible">
+                            <ItemsControl x:Name="UserList_pizza" ItemTemplate="{StaticResource UserDataTemplate}" AlternationCount="9999"/>
+                        </ScrollViewer>
+                    </Grid>
                 </Grid>
             </TabItem>
 
@@ -219,14 +254,20 @@
                 <Grid Background="SteelBlue">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="450"/>
+                        <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="50"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="15"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
+                    <Grid Grid.Column="1" Grid.Row="1" Background="White">
+                        <ScrollViewer x:Name="TaskList_dodatek" VerticalScrollBarVisibility="Visible">
+                            <ItemsControl x:Name="UserList_dodatek" ItemTemplate="{StaticResource UserDataTemplate}" AlternationCount="9999"/>
+                        </ScrollViewer>
+                    </Grid>
                 </Grid>
             </TabItem>
 
@@ -240,14 +281,20 @@
                 <Grid Background="SteelBlue">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="450"/>
+                        <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="50"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="15"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
+                    <Grid Grid.Column="1" Grid.Row="1" Background="White">
+                        <ScrollViewer x:Name="TaskList_deser" VerticalScrollBarVisibility="Visible">
+                            <ItemsControl x:Name="UserList_deser" ItemTemplate="{StaticResource UserDataTemplate}" AlternationCount="9999"/>
+                        </ScrollViewer>
+                    </Grid>
                 </Grid>
             </TabItem>
 
@@ -261,14 +308,20 @@
                 <Grid Background="SteelBlue">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="450"/>
+                        <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="50"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="15"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
+                    <Grid Grid.Column="1" Grid.Row="1" Background="White">
+                        <ScrollViewer x:Name="TaskList_bezalkoholowy" VerticalScrollBarVisibility="Visible">
+                            <ItemsControl x:Name="UserList_bezalkoholowy" ItemTemplate="{StaticResource UserDataTemplate}" AlternationCount="9999"/>
+                        </ScrollViewer>
+                    </Grid>
                 </Grid>
             </TabItem>
 
@@ -282,17 +335,26 @@
                 <Grid Background="SteelBlue">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="450"/>
+                        <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="50"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="15"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
+                    <Grid Grid.Column="1" Grid.Row="1" Background="White">
+                        <ScrollViewer x:Name="TaskList_alkoholowy" VerticalScrollBarVisibility="Visible">
+                            <ItemsControl x:Name="UserList_alkoholowy" ItemTemplate="{StaticResource UserDataTemplate}" AlternationCount="9999"/>
+                        </ScrollViewer>
+                    </Grid>
                 </Grid>
             </TabItem>
         </TabControl>
-        <Button Content="Zatwierdź" Background="GreenYellow" HorizontalAlignment="Left" Margin="621,361,0,0" VerticalAlignment="Top" Width="107" Height="48"/>
+        <Button Content="Zatwierdź" Background="GreenYellow" Margin="621,361,0,0" Width="107" Height="48"/>
+        <ScrollViewer x:Name="TaskList_short" VerticalScrollBarVisibility="Visible" Width="220" Margin="533,98,36,63" Background="White">
+            <ItemsControl x:Name="UserList_short" ItemTemplate="{StaticResource UserDataTemplate_short}" AlternationCount="9999"/>
+        </ScrollViewer>
     </Grid>
 </Window>
