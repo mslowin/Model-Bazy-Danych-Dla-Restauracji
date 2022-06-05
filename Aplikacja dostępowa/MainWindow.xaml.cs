@@ -1,5 +1,4 @@
 ﻿using System;
-using Restauracja_Bazy_Danych.Helper;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Restauracja_Bazy_Danych.Helper;
 using MySql.Data.MySqlClient;
 
 namespace Restauracja_Bazy_Danych
@@ -22,44 +22,122 @@ namespace Restauracja_Bazy_Danych
     /// </summary>
     public partial class MainWindow : Window
     {
+        /** Kody poszczególnych posad - do logowania do osobnych okien
+         * 1234 - Kelner
+         * 4321 - Barman
+         * 5678 - Kucharz
+         * 8765 - Kierowca
+        */
+        private string[] codes = new string[4] { "1234", "4321", "5678", "8765"};
+
         public MainWindow()
         {
             InitializeComponent();
             DBHelper.EstablishConnection();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button7(object sender, RoutedEventArgs e)
         {
-            MySqlConnection conn;
-            string myConnectionString = "server=localhost;uid=root;" +
-                "pwd=Starwars2;database=restauracja";
-
-            conn = new MySqlConnection();
-            conn.ConnectionString = myConnectionString;
-            conn.Open();
-
-            MySqlCommand command;
-            MySqlDataReader reader;
-            string sql, Output = " ";
-
-            sql = "SELECT * FROM potrawa";
-            command = new MySqlCommand(sql, conn);
-            reader = command.ExecuteReader();
-
-            while (reader.Read())
+            Console.WriteLine("7");
+            Button button = (Button)sender;
+            pinBox.Password += button.Content.ToString();
+        }
+        private void Button8(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("8");
+            Button button = (Button)sender;
+            pinBox.Password += button.Content.ToString();
+        }
+        private void Button9(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("9");
+            Button button = (Button)sender;
+            pinBox.Password += button.Content.ToString();
+        }
+        private void Button4(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("4");
+            Button button = (Button)sender;
+            pinBox.Password += button.Content.ToString();
+        }
+        private void Button5(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("5");
+            Button button = (Button)sender;
+            pinBox.Password += button.Content.ToString();
+        }
+        private void Button6(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("6");
+            Button button = (Button)sender;
+            pinBox.Password += button.Content.ToString();
+        }
+        private void Button1(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("1");
+            Button button = (Button)sender;
+            pinBox.Password += button.Content.ToString();
+        }
+        private void Button2(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("2");
+            Button button = (Button)sender;
+            pinBox.Password += button.Content.ToString();
+        }
+        private void Button3(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("3");
+            Button button = (Button)sender;
+            pinBox.Password += button.Content.ToString();
+        }
+        private void ButtonC(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("C");
+            if (pinBox.Password.Length > 0)
             {
-                Output = Output + reader.GetValue(0) + " " + reader.GetValue(1) + " " + reader.GetValue(2) + " " + reader.GetValue(3) + " " + reader.GetValue(4) + "\n";
+                pinBox.Password = pinBox.Password.Remove(pinBox.Password.Length - 1, 1);
             }
-            reader.Close();
-
-            textbox1.Text = Output;
-
-            conn.Close();
-            Console.WriteLine("The database has been closed!");
-
-            conn.Dispose();
-            Console.WriteLine("The database connection has been disposed!");
-            Console.WriteLine("Connection State: " + conn.State.ToString());
+        }
+        private void Button0(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("0");
+            Button button = (Button)sender;
+            pinBox.Password += button.Content.ToString();
+        }
+        private void ButtonOk(object sender, RoutedEventArgs e)
+        {
+            string Password = pinBox.Password;
+            try
+            {
+                if (Password == codes[0])
+                {
+                    Console.WriteLine("KELNER");
+                }
+                else if (Password == codes[1])
+                {
+                    Console.WriteLine("BARMAN");
+                }
+                else if (Password == codes[2])
+                {
+                    Console.WriteLine("KUCHARZ");
+                }
+                else if (Password == codes[3])
+                {
+                    Console.WriteLine("KIEROWCA");
+                }
+                else if (pinBox.Password.Length > 0)
+                {
+                    _ = MessageBox.Show("Niepoprawne logowanie!", "Wystąpił błąd",
+                        MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("A handled exception just occurred: " + ex.Message, "Exception Sample", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            //test testwindow = new test();
+            //testwindow.ShowDialog();
+            Console.WriteLine("OK");
         }
     }
 }
