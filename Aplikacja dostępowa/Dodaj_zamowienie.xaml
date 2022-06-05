@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Restauracja_Bazy_Danych"
         mc:Ignorable="d"
-        Title="Dodaj_zamowienie" Height="450" Width="800">
+        Title="Dodaj_zamowienie" Height="568" Width="800">
 
     <Window.Resources>
         <Style  TargetType="{x:Type TabControl}">
@@ -108,7 +108,7 @@
                 <!--Przyciski-->
                 <StackPanel Orientation="Vertical" Width="80" Height="72" HorizontalAlignment="Left" VerticalAlignment="top">
                     <Border BorderThickness="2" BorderBrush="Black">
-                        <Button Click="dodaj_potrawe_Click" Height="68" Width="78" Background="GreenYellow" Foreground="PaleVioletRed" Content="{Binding Id_Zamowienia}" >
+                        <Button Click="dodaj_potrawe_Click" Height="68" Width="78" Background="GreenYellow" Foreground="PaleVioletRed" Content="{Binding Id_Potrawa}" >
                             <!--<Image Source="./X_sign.png" ></Image>-->
                         </Button>
                     </Border>
@@ -130,8 +130,8 @@
                 </StackPanel>
             </StackPanel>
         </DataTemplate>
-        
-        
+
+
     </Window.Resources>
 
     <Grid>
@@ -154,12 +154,25 @@
                         <RowDefinition Height="15"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Column="1" Grid.Row="1" Background="White">
                         <ScrollViewer x:Name="TaskList_przystawki" VerticalScrollBarVisibility="Visible">
                             <ItemsControl x:Name="UserList_przystawki" ItemTemplate="{StaticResource UserDataTemplate}" AlternationCount="9999"/>
                         </ScrollViewer>
                     </Grid>
+                    <TextBlock Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="38,13,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Podaj numer stolika:" VerticalAlignment="Top" Width="180" Height="32"/>
+                    <TextBlock 
+                        Grid.Column="1"
+                        Grid.Row="2"
+                        FontSize="20"
+                        TextAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="10,50,10,43"
+                        LineHeight="Auto"
+                        TextWrapping="NoWrap"
+                        Text="Lub podaj adres:" Grid.RowSpan="2"/>
                 </Grid>
             </TabItem>
 
@@ -181,6 +194,8 @@
                         <RowDefinition Height="15"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Column="1" Grid.Row="1" Background="White">
                         <ScrollViewer x:Name="TaskList_zupy" VerticalScrollBarVisibility="Visible">
@@ -189,7 +204,7 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            
+
             <TabItem>
                 <TabItem.Header>
                     <TextBlock 
@@ -207,6 +222,8 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="15"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
                         <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Column="1" Grid.Row="1" Background="White">
@@ -235,6 +252,8 @@
                         <RowDefinition Height="15"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Column="1" Grid.Row="1" Background="White">
                         <ScrollViewer x:Name="TaskList_pizza" VerticalScrollBarVisibility="Visible">
@@ -261,6 +280,8 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="15"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
                         <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Column="1" Grid.Row="1" Background="White">
@@ -289,6 +310,8 @@
                         <RowDefinition Height="15"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Column="1" Grid.Row="1" Background="White">
                         <ScrollViewer x:Name="TaskList_deser" VerticalScrollBarVisibility="Visible">
@@ -315,6 +338,8 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="15"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
                         <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Column="1" Grid.Row="1" Background="White">
@@ -343,6 +368,8 @@
                         <RowDefinition Height="15"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Column="1" Grid.Row="1" Background="White">
                         <ScrollViewer x:Name="TaskList_alkoholowy" VerticalScrollBarVisibility="Visible">
@@ -352,9 +379,57 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <Button Content="Zatwierdź" Background="GreenYellow" Margin="621,361,0,0" Width="107" Height="48"/>
-        <ScrollViewer x:Name="TaskList_short" VerticalScrollBarVisibility="Visible" Width="220" Margin="533,98,36,63" Background="White">
+        <Button Content="Zatwierdź" Background="GreenYellow" Margin="621,361,0,0" Width="107" Height="48" Click="Button_Click" RenderTransformOrigin="0.009,0.021"/>
+        <ScrollViewer x:Name="TaskList_short" VerticalScrollBarVisibility="Visible" Width="220" Margin="534,98,38,179" Background="White">
             <ItemsControl x:Name="UserList_short" ItemTemplate="{StaticResource UserDataTemplate_short}" AlternationCount="9999"/>
         </ScrollViewer>
+        <TextBox 
+                Name="stolik" 
+                TextAlignment="Right"
+                VerticalAlignment="Center"
+                TextWrapping="NoWrap" 
+                FontSize="20" Margin="279,371,336,136" Height="30"/>
+        <TextBox 
+                Name="ulica" 
+                TextAlignment="Right"
+                VerticalAlignment="Center"
+                TextWrapping="NoWrap" 
+                FontSize="20" Margin="214,446,336,64" Height="27"/>
+        <TextBlock 
+                FontSize="20"
+                TextAlignment="Left"
+                VerticalAlignment="Center"
+                Margin="147,446,583,64"
+                LineHeight="Auto"
+                TextWrapping="NoWrap"
+                Text="Ulica: "/>
+        <TextBlock 
+                FontSize="20"
+                TextAlignment="Left"
+                VerticalAlignment="Center"
+                Margin="30,486,633,24"
+                LineHeight="Auto"
+                TextWrapping="NoWrap"
+                Text="Nr budynku: "/>
+        <TextBox 
+                Name="budynek" 
+                TextAlignment="Right"
+                VerticalAlignment="Center"
+                TextWrapping="NoWrap" 
+                FontSize="20" Margin="149,486,553,24" Height="27"/>
+        <TextBox 
+                Name="lokal" 
+                TextAlignment="Right"
+                VerticalAlignment="Center"
+                TextWrapping="NoWrap" 
+                FontSize="20" Margin="474,486,228,24" Height="27"/>
+        <TextBlock 
+                FontSize="20"
+                TextAlignment="Left"
+                VerticalAlignment="Center"
+                Margin="260,486,323,24"
+                LineHeight="Auto"
+                TextWrapping="NoWrap"
+                Text="Nr lokalu (opcjonalnie): "/>
     </Grid>
 </Window>

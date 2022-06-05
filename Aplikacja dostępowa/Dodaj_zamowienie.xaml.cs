@@ -22,8 +22,12 @@ namespace Restauracja_Bazy_Danych
     /// </summary>
     public partial class Dodaj_zamowienie : Window
     {
+        public List<Potrawy_Lista> PomList = new List<Potrawy_Lista>();
+
         public Dodaj_zamowienie()
         {
+            PomList = GetPomList();
+
             InitializeComponent();
             loadStackPanelData_Przystawki();
             loadStackPanelData_Zupy();
@@ -35,9 +39,61 @@ namespace Restauracja_Bazy_Danych
             loadStackPanelData_Alkoholowy();
         }
 
+        public List<Potrawy_Lista> GetPomList()
+        {
+            return PomList;
+        }
+
         private void dodaj_potrawe_Click(object sender, RoutedEventArgs e)
         {
+            Button clickbtn = sender as Button;
+
+            string index = clickbtn.ToString();
+            index = index.Remove(0, 31);
+
+            int intIndex;
+            intIndex = Int32.Parse(index);
+
+            MySqlConnection conn;
+            string myConnectionString = "server=localhost;uid=root;" +
+                "pwd=Starwars2;database=restauracja";
+
+            conn = new MySqlConnection();
+            conn.ConnectionString = myConnectionString;
+            conn.Open();
+
+            MySqlCommand command;
+            MySqlDataReader reader;
+            string sql;
+            string[] Output = new string[5];
+
+            sql = "SELECT * FROM potrawa WHERE Id_Potrawa = " + intIndex + ";"; // zamówienia w lokalu (numer stolu > 0)
+            command = new MySqlCommand(sql, conn);
+            reader = command.ExecuteReader();
+
+            List<Potrawy_Lista> PotrawaList = new List<Potrawy_Lista>();
+            PotrawaList.AddRange(PomList);
+
             
+            string year = DateTime.Now.Year.ToString();
+            string month = DateTime.Now.Month.ToString();
+            string day = DateTime.Now.Day.ToString();
+            string time = year + "." + month + "." + day;
+
+            while (reader.Read())
+            {
+                Output[0] = reader.GetValue(0) + "";                        //ID
+                Output[1] = reader.GetValue(1) + "";                        //nazwa
+                Output[2] = "Rodzaj diety: " + reader.GetValue(3) + "";     //dieta
+                Output[3] = reader.GetValue(4) + " zł";                     //cena
+                Output[4] = time;                                           //data
+                PotrawaList.Add(new Potrawy_Lista() { Id_Potrawa = Output[0], Nazwa = Output[1], Id_Diety = Output[2], Cena = Output[3], Data = Output[4] });
+                PomList.Add(new Potrawy_Lista() { Id_Potrawa = Output[0], Nazwa = Output[1], Id_Diety = Output[2], Cena = Output[3], Data = Output[4] });
+                //GlobalVariables.TworzenieZamowienieList.Add(new Potrawy_Lista() { Id_Potrawa = Output[0], Nazwa = Output[1], Id_Diety = Output[2], Cena = Output[3] });
+            }
+            reader.Close();
+
+            UserList_short.ItemsSource = PotrawaList;
         }
 
         private void loadStackPanelData_Alkoholowy()
@@ -321,13 +377,48 @@ namespace Restauracja_Bazy_Danych
             UserList_przystawki.ItemsSource = ZamowienieList;
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string stolik_text = stolik.Text;
+            string lokal_text = lokal.Text;
+            string ulica_text = ulica.Text;
+            string budynek_text = budynek.Text;
+            //DateTime data = DateTime.Parse(PomList[0].Data);
+            string data = PomList[0].Data;
+
+            if (stolik_text == "") stolik_text = "NULL";
+            if (lokal_text == "") lokal_text = "NULL";
+            if (ulica_text == "") ulica_text = "NULL";
+            if (budynek_text == "") budynek_text = "NULL";
+
+            MySqlConnection conn;
+            string myConnectionString = "server=localhost;uid=root;" +
+                "pwd=Starwars2;database=restauracja";
+
+            conn = new MySqlConnection();
+            conn.ConnectionString = myConnectionString;
+            conn.Open();
+
+            MySqlCommand command;
+            string query = "CALL dodaj_zamowienie(" + stolik_text + ",\"" + data + "\"," + ulica_text + "," + budynek_text + "," + lokal_text + ",1,0);";
+            //Console.WriteLine(query);
+            command = new MySqlCommand(query, conn);
+            _ = command.ExecuteReader();
+
+            this.Close();
+            
+        }
+
         public class Potrawy_Lista
         {
             public string Id_Potrawa { get; set; }
             public string Nazwa { get; set; }
             public string Id_Diety { get; set; }
             public string Cena { get; set; }
+            public string Data { get; set; }
             public int enumNumber { get; set; }
         }
+
+        
     }
 }
