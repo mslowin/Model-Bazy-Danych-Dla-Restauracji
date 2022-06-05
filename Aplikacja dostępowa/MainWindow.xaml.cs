@@ -141,7 +141,7 @@ namespace Restauracja_Bazy_Danych
             {
                 MessageBox.Show("A handled exception just occurred: " + ex.Message, "Exception Sample", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            test2 testwindow = new test2();
+            kelner_window testwindow = new kelner_window();
             this.Content = testwindow.Content;
 
             //testwindow.ShowDialog();

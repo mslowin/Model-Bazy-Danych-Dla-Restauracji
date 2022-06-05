@@ -11,7 +11,7 @@ namespace Restauracja_Bazy_Danych.Helper
 {
     class DBHelper
     {
-        private static MySqlConnection connection;
+        public static MySqlConnection connection;
         private static MySqlCommand cmd = null;
         private static DataTable dt;
         private static MySqlDataAdapter sda;
@@ -30,14 +30,8 @@ namespace Restauracja_Bazy_Danych.Helper
                 conn = new MySqlConnection();
                 conn.ConnectionString = myConnectionString;
                 conn.Open();
-                //Console.WriteLine("The database has been opened!");
-                //Console.WriteLine("Connection State: " + conn.State.ToString());
-                //Console.ReadLine();
-                //MessageBoxButton button = MessageBoxButton.YesNoCancel;
-                //MessageBoxImage icon = MessageBoxImage.Warning;
-                //MessageBox.Show("Baza polaczona", "Connection", button, icon, MessageBoxResult.Yes);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Nie dziala");
             }
@@ -58,7 +52,7 @@ namespace Restauracja_Bazy_Danych.Helper
                     connection.Close();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 connection.Close();
             }
