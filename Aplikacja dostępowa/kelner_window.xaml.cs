@@ -64,7 +64,16 @@ namespace Restauracja_Bazy_Danych
 
         private void wyswietl_informacje(object sender, RoutedEventArgs e)
         {
-            //!!!!!!!!!!!!!!!!!!!!
+            Button clickbtn = sender as Button;
+
+            string index = clickbtn.ToString();
+            index = index.Remove(0, 31);
+
+            int intIndex;
+            intIndex = Int32.Parse(index); //indeks zamowienia ktorego informacje chcemy wyswietlic
+
+            Informacje_o_zamowieniu informacje_O_Zamowieniu = new Informacje_o_zamowieniu(intIndex);
+            informacje_O_Zamowieniu.ShowDialog();
         }
 
         private void loadStackPanelData()
