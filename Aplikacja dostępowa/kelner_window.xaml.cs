@@ -33,6 +33,7 @@ namespace Restauracja_Bazy_Danych
         {
             Dodaj_zamowienie testwindow = new Dodaj_zamowienie();
             testwindow.ShowDialog();
+            loadStackPanelData();
         }
 
         private void ukoncz_zamowienie(object sender, RoutedEventArgs e)
@@ -81,7 +82,7 @@ namespace Restauracja_Bazy_Danych
             string sql;
             string[] Output = new string[4];
 
-            sql = "SELECT * FROM zamowienie WHERE Numer_Stolu > 0 AND Gotowe != 1"; // zamówienia w lokalu (numer stolu > 0)
+            sql = "SELECT * FROM zamowienie WHERE Numer_Stolu > 0 AND Gotowe != 1"; // zamówienia w lokalu (numer stolu > 0), i tylko te niegotowe
             command = new MySqlCommand(sql, conn);
             reader = command.ExecuteReader();
 
@@ -91,9 +92,8 @@ namespace Restauracja_Bazy_Danych
             {
                 Output[0] = reader.GetValue(0) + "";
                 Output[1] = "Numer Stołu: " + reader.GetValue(1) + "";
-                Output[2] = "Data zamowienia: " + reader.GetValue(2) + "";
+                Output[2] = "Data zamowienia: " + reader.GetValue(2).ToString().Remove(10, 9) + ""; // remove usuwa godzine z wyswietlanej zawartosci
                 ZamowienieList.Add(new Zamowienie_Lista() { Id_Zamowienia = Output[0], Numer_Stolu = Output[1], Data_Zamowienia = Output[2] });
-
             }
             reader.Close();
 

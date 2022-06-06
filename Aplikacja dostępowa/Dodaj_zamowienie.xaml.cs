@@ -23,6 +23,7 @@ namespace Restauracja_Bazy_Danych
     public partial class Dodaj_zamowienie : Window
     {
         public List<Potrawy_Lista> PomList = new List<Potrawy_Lista>();
+        public List<int> Id_potraw_do_zamowienia = new List<int>();
 
         public Dodaj_zamowienie()
         {
@@ -52,7 +53,8 @@ namespace Restauracja_Bazy_Danych
             index = index.Remove(0, 31);
 
             int intIndex;
-            intIndex = Int32.Parse(index);
+            intIndex = Int32.Parse(index); // intIndex jest w tym miejscu Id_potrawa, na ktora sie kliklo
+            Id_potraw_do_zamowienia.Add(intIndex);
 
             MySqlConnection conn;
             string myConnectionString = "server=localhost;uid=root;" +
@@ -94,6 +96,50 @@ namespace Restauracja_Bazy_Danych
             reader.Close();
 
             UserList_short.ItemsSource = PotrawaList;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string stolik_text = stolik.Text;
+            string lokal_text = lokal.Text;
+            string ulica_text = ulica.Text;
+            string budynek_text = budynek.Text;
+            //DateTime data = DateTime.Parse(PomList[0].Data);
+            string data = PomList[0].Data;
+
+            if (stolik_text == "") stolik_text = "NULL";
+            if (lokal_text == "") lokal_text = "NULL";
+            if (ulica_text == "") ulica_text = "NULL";
+            if (budynek_text == "") budynek_text = "NULL";
+
+            MySqlConnection conn;
+            string myConnectionString = "server=localhost;uid=root;" +
+                "pwd=Starwars2;database=restauracja";
+
+            conn = new MySqlConnection();
+            conn.ConnectionString = myConnectionString;
+            conn.Open();
+
+            MySqlCommand command;
+            string query = "CALL dodaj_zamowienie(" + stolik_text + ",\"" + data + "\"," + ulica_text + "," + budynek_text + "," + lokal_text + ",1,0);";
+            //Console.WriteLine(query);
+            command = new MySqlCommand(query, conn);
+            _ = command.ExecuteReader();
+            conn.Close();
+
+            foreach (var i in Id_potraw_do_zamowienia) // dodawanie do zamowienia (tego stworzonego przed chwila) potraw dodanych wczesniej
+            {
+                conn.Open();
+                //Console.WriteLine(i);
+                string q = "CALL dodaj_relacje_zamowienie_potrawa(" + i + ");";
+                command = new MySqlCommand(q, conn);
+                _ = command.ExecuteReader();
+                conn.Close();
+            }
+
+            Id_potraw_do_zamowienia.Clear();
+
+            this.Close();
         }
 
         private void loadStackPanelData_Alkoholowy()
@@ -375,38 +421,6 @@ namespace Restauracja_Bazy_Danych
             reader.Close();
 
             UserList_przystawki.ItemsSource = ZamowienieList;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            string stolik_text = stolik.Text;
-            string lokal_text = lokal.Text;
-            string ulica_text = ulica.Text;
-            string budynek_text = budynek.Text;
-            //DateTime data = DateTime.Parse(PomList[0].Data);
-            string data = PomList[0].Data;
-
-            if (stolik_text == "") stolik_text = "NULL";
-            if (lokal_text == "") lokal_text = "NULL";
-            if (ulica_text == "") ulica_text = "NULL";
-            if (budynek_text == "") budynek_text = "NULL";
-
-            MySqlConnection conn;
-            string myConnectionString = "server=localhost;uid=root;" +
-                "pwd=Starwars2;database=restauracja";
-
-            conn = new MySqlConnection();
-            conn.ConnectionString = myConnectionString;
-            conn.Open();
-
-            MySqlCommand command;
-            string query = "CALL dodaj_zamowienie(" + stolik_text + ",\"" + data + "\"," + ulica_text + "," + budynek_text + "," + lokal_text + ",1,0);";
-            //Console.WriteLine(query);
-            command = new MySqlCommand(query, conn);
-            _ = command.ExecuteReader();
-
-            this.Close();
-            
         }
 
         public class Potrawy_Lista
