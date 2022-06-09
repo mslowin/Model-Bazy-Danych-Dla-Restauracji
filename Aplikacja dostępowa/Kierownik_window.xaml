@@ -118,6 +118,40 @@
                 </StackPanel>
             </StackPanel>
         </DataTemplate>
+        <DataTemplate x:Key="UserDataTemplate_pracownicy">
+            <StackPanel Orientation="Horizontal" Height="60" HorizontalAlignment="Left" VerticalAlignment="top">
+                <!--tekst-->
+                <StackPanel Orientation="Horizontal"  Width="580" HorizontalAlignment="Left" VerticalAlignment="top">
+                    <Border BorderThickness="1" BorderBrush="Black">
+                        <Label Height="58" Width="50" Content="{Binding Id_Pracownika}" FontSize="12" Padding="15,10,0,0"/>
+                    </Border>
+                    <Border BorderThickness="1" BorderBrush="Black">
+                        <Label Height="58" Width="90" Content="{Binding Imie}" FontSize="18" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderThickness="1" BorderBrush="Black">
+                        <Label Height="58" Width="110" Content="{Binding Nazwisko}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderThickness="1" BorderBrush="Black">
+                        <!--PESEL-->
+                        <Label Height="58" Width="120" Content="{Binding Pesel}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderThickness="1" BorderBrush="Black">
+                        <Label Height="58" Width="100" Content="{Binding Posada}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderThickness="1" BorderBrush="Black">
+                        <Label Height="58" Width="100" Content="{Binding Zmiana}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </StackPanel>
+                <!--Przyciski-->
+                <StackPanel Orientation="Vertical" Width="76" Height="60" HorizontalAlignment="Left" VerticalAlignment="top">
+                    <Border BorderThickness="1" BorderBrush="Black">
+                        <Button Click="dodaj_potrawe_Click" Height="58" Background="Yellow" Foreground="PaleVioletRed" Content="{Binding Id_Skladnik}">
+                            <!--<Image Source="./X_sign.png" ></Image>-->
+                        </Button>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid>
@@ -157,15 +191,35 @@
                 </TabItem.Header>
                 <Grid Background="SteelBlue">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="674"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="57*"/>
+                        <RowDefinition Height="57*"/>
+                        <RowDefinition Height="567*"/>
+                        <RowDefinition Height="57*"/>
                     </Grid.RowDefinitions>
+                    <Grid Grid.Row="1" Grid.Column="1" Background="SteelBlue">
+                        <StackPanel Orientation="Horizontal" Height="27" HorizontalAlignment="Left" VerticalAlignment="top">
+                            <!--tekst-->
+                            <StackPanel Orientation="Horizontal"  Width="580" HorizontalAlignment="Left" VerticalAlignment="top">
+                                <Label Height="25" Width="52" Content="Id" FontSize="12" Padding="20,5,0,0"/>
+                                <Label Height="25" Width="92" Content="Imie" FontSize="12" Padding="35,5,0,0"/>
+                                <Label Height="25" Width="112" Content="Nazwisko" FontSize="12" Padding="30,5,0,0"/>
+                                <Label Height="25" Width="122" Content="Pesel" FontSize="12" Padding="45,5,0,0"/>
+                                <Label Height="25" Width="102" Content="Posada" FontSize="12" Padding="30,5,0,0"/>
+                                <Label Height="25" Width="102" Content="Zmiana" FontSize="12" Padding="30,5,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="2" Grid.Column="1" Background="White">
+                        <ScrollViewer x:Name="TaskList_pracownicy" VerticalScrollBarVisibility="Visible">
+                            <ItemsControl x:Name="UserList_pracownicy" ItemTemplate="{StaticResource UserDataTemplate_pracownicy}" AlternationCount="9999"/>
+                            
+                        </ScrollViewer>
+                    </Grid>
                 </Grid>
             </TabItem>
 
