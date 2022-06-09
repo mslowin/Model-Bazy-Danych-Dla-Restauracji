@@ -62,6 +62,32 @@ namespace Restauracja_Bazy_Danych
             loadStackPanelData();
         }
 
+        private void usun_zamowienie(object sender, RoutedEventArgs e)
+        {
+            Button clickbtn = sender as Button;
+
+            string index = clickbtn.ToString();
+            index = index.Remove(0, 31);
+
+            int intIndex;
+            intIndex = Int32.Parse(index);
+
+            MySqlConnection conn;
+            string myConnectionString = "server=localhost;uid=root;" +
+                "pwd=Starwars2;database=restauracja";
+
+            conn = new MySqlConnection();
+            conn.ConnectionString = myConnectionString;
+            conn.Open();
+
+            MySqlCommand command;
+            string query = "DELETE FROM tab_posr_zamowienie_potrawa WHERE Id_Zamowienie = " + intIndex + ";\n CALL usun_zamowienie(" + intIndex + ");";
+            command = new MySqlCommand(query, conn);
+            _ = command.ExecuteReader();
+
+            loadStackPanelData();
+        }
+
         private void wyswietl_informacje(object sender, RoutedEventArgs e)
         {
             Button clickbtn = sender as Button;
@@ -91,7 +117,7 @@ namespace Restauracja_Bazy_Danych
             string sql;
             string[] Output = new string[4];
 
-            sql = "SELECT * FROM zamowienie WHERE Numer_Stolu > 0 AND Gotowe != 1"; // zamówienia w lokalu (numer stolu > 0), i tylko te niegotowe
+            sql = "SELECT * FROM zamowienie WHERE Gotowe = 0 AND Id_Zamowienia >0 AND Numer_Stolu >0"; // zamówienia w lokalu (numer stolu > 0), i tylko te niegotowe
             command = new MySqlCommand(sql, conn);
             reader = command.ExecuteReader();
 
@@ -101,7 +127,7 @@ namespace Restauracja_Bazy_Danych
             {
                 Output[0] = reader.GetValue(0) + "";
                 Output[1] = "Numer Stołu: " + reader.GetValue(1) + "";
-                Output[2] = "Data zamowienia: " + reader.GetValue(2).ToString().Remove(10, 9) + ""; // remove usuwa godzine z wyswietlanej zawartosci
+                Output[2] = "Data zamowienia: " + reader.GetValue(2).ToString()/*.Remove(10, 9)*/ + ""; // remove usuwa godzine z wyswietlanej zawartosci
                 ZamowienieList.Add(new Zamowienie_Lista() { Id_Zamowienia = Output[0], Numer_Stolu = Output[1], Data_Zamowienia = Output[2] });
             }
             reader.Close();

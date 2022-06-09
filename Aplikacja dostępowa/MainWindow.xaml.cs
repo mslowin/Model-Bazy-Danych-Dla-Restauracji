@@ -30,7 +30,7 @@ namespace Restauracja_Bazy_Danych
          * 8765 - Kierowca
          * 0000 - Kierownik
         */
-        private string[] codes = new string[5] { "1234", "4321", "5678", "8765","0000"};
+        private string[] codes = new string[5] { "1234", "4321", "5678", "8765", "0000"};
 
         public MainWindow()
         {
@@ -114,6 +114,9 @@ namespace Restauracja_Bazy_Danych
                 if (Password == codes[0])
                 {
                     Console.WriteLine("KELNER");
+                    kelner_window testwindow = new kelner_window();
+                    Content = testwindow.Content;
+                    //testwindow.ShowDialog();
                 }
                 else if (Password == codes[1])
                 {
@@ -130,6 +133,9 @@ namespace Restauracja_Bazy_Danych
                 else if (Password == codes[4])
                 {
                     Console.WriteLine("KIEROWNIK");
+                    Kierownik_window testwindow2 = new Kierownik_window();
+                    Content = testwindow2.Content;
+                    //_ = testwindow2.ShowDialog();
                 }
                 else if (pinBox.Password.Length > 0)
                 {
@@ -141,10 +147,6 @@ namespace Restauracja_Bazy_Danych
             {
                 MessageBox.Show("A handled exception just occurred: " + ex.Message, "Exception Sample", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            kelner_window testwindow = new kelner_window();
-            this.Content = testwindow.Content;
-
-            //testwindow.ShowDialog();
             Console.WriteLine("OK");
         }
     }

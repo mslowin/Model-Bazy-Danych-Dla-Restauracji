@@ -80,7 +80,10 @@ namespace Restauracja_Bazy_Danych
             string year = DateTime.Now.Year.ToString();
             string month = DateTime.Now.Month.ToString();
             string day = DateTime.Now.Day.ToString();
-            string time = year + "." + month + "." + day;
+            string hour = DateTime.Now.Hour.ToString();
+            string minute = DateTime.Now.Minute.ToString();
+            string second = DateTime.Now.Second.ToString();
+            string time = year + "." + month + "." + day + "." + hour + "." + minute + "." + second;
 
             while (reader.Read())
             {

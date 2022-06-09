@@ -51,6 +51,8 @@ namespace Restauracja_Bazy_Danych
             command = new MySqlCommand(query, conn);
             MySqlDataReader reader = command.ExecuteReader();
             int i = 0;
+            int Suma_cena = 0;
+            string str_tmp;
             List<informacja_cena_nazwa> lista_potraw = new List<informacja_cena_nazwa>();
 
             //informacje_txt.Text += "|    nazwa    |    cena    |\n";
@@ -60,8 +62,10 @@ namespace Restauracja_Bazy_Danych
                 string tmp = "   " + (i + 1) as string + ". " + lista_potraw[i].nazwa + "   \t" + lista_potraw[i].cena + "\n";
                 Console.WriteLine(tmp);
                 informacje_txt.Text += tmp;
+                Suma_cena += int.Parse(reader.GetValue(1).ToString());
                 i++;
             }
+            informacje_txt.Text += "Suma: " + Suma_cena.ToString();
             reader.Close();
         }
 
