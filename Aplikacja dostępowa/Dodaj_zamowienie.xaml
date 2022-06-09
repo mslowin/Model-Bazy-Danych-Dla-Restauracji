@@ -162,18 +162,7 @@
                             <ItemsControl x:Name="UserList_przystawki" ItemTemplate="{StaticResource UserDataTemplate}" AlternationCount="9999"/>
                         </ScrollViewer>
                     </Grid>
-                    <TextBlock Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="38,13,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Podaj numer stolika:" VerticalAlignment="Top" Width="180" Height="32"/>
-                    <TextBlock 
-                        Grid.Column="1"
-                        Grid.Row="2"
-                        FontSize="20"
-                        TextAlignment="Center"
-                        VerticalAlignment="Center"
-                        Margin="10,50,10,43"
-                        LineHeight="Auto"
-                        TextWrapping="NoWrap"
-                        Text="Lub podaj adres:" Grid.RowSpan="2"/>
-                </Grid>
+                   </Grid>
             </TabItem>
 
             <TabItem>
@@ -383,6 +372,16 @@
         <ScrollViewer x:Name="TaskList_short" VerticalScrollBarVisibility="Visible" Width="220" Margin="534,98,38,179" Background="White">
             <ItemsControl x:Name="UserList_short" ItemTemplate="{StaticResource UserDataTemplate_short}" AlternationCount="9999"/>
         </ScrollViewer>
+        <TextBlock 
+                FontSize="20" 
+                HorizontalAlignment="Left" 
+                Margin="80,369,0,0" 
+                TextWrapping="Wrap" 
+                Text="Podaj numer stolika:" 
+                VerticalAlignment="Top" 
+                Width="180" 
+                Height="32"/>
+
         <TextBox 
                 Name="stolik" 
                 TextAlignment="Right"
@@ -395,6 +394,14 @@
                 VerticalAlignment="Center"
                 TextWrapping="NoWrap" 
                 FontSize="20" Margin="214,446,336,64" Height="27"/>
+        <TextBlock 
+                FontSize="20"
+                TextAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="232,412,361,105"
+                LineHeight="Auto"
+                TextWrapping="NoWrap"
+                Text="Lub podaj adres:"/>
         <TextBlock 
                 FontSize="20"
                 TextAlignment="Left"

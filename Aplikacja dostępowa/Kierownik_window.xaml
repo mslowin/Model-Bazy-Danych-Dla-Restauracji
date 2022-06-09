@@ -90,20 +90,26 @@
             </Setter>
         </Style>
         <DataTemplate x:Key="UserDataTemplate">
-            <StackPanel Orientation="Horizontal" Height="60" HorizontalAlignment="Left" VerticalAlignment="top" Width="672">
+            <StackPanel Orientation="Horizontal" Height="60" HorizontalAlignment="Left" VerticalAlignment="top">
                 <!--tekst-->
-                <StackPanel Orientation="Horizontal" Width="576" HorizontalAlignment="Left" VerticalAlignment="top">
+                <StackPanel Orientation="Horizontal"  Width="580" HorizontalAlignment="Left" VerticalAlignment="top">
                     <Border BorderThickness="1" BorderBrush="Black">
                         <Label Height="58" Width="100" Content="{Binding Id_Skladnik}" FontSize="12" Padding="15,10,0,0"/>
                     </Border>
-                    <StackPanel Orientation="Vertical" Width="474" HorizontalAlignment="Left" VerticalAlignment="top">
+                    <StackPanel Orientation="Horizontal" Width="480" HorizontalAlignment="Left" VerticalAlignment="top">
                         <Border BorderThickness="1" BorderBrush="Black">
-                            <Label Height="58" Content="{Binding Nazwa}" FontSize="18"/>
+                            <Label Height="58" Width="358" Content="{Binding Nazwa}" FontSize="18" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderThickness="1" BorderBrush="Black">
+                            <Label Height="58" Width="68" Content="{Binding Ilosc}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderThickness="1" BorderBrush="Black">
+                            <Label Height="58" Width="48" Content="{Binding Id_Jednostka}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </StackPanel>
                 </StackPanel>
                 <!--Przyciski-->
-                <StackPanel Orientation="Vertical" Width="96" Height="60" HorizontalAlignment="Left" VerticalAlignment="top">
+                <StackPanel Orientation="Vertical" Width="76" Height="60" HorizontalAlignment="Left" VerticalAlignment="top">
                     <Border BorderThickness="1" BorderBrush="Black">
                         <Button Click="dodaj_potrawe_Click" Height="58" Background="Yellow" Foreground="PaleVioletRed" Content="{Binding Id_Skladnik}">
                             <!--<Image Source="./X_sign.png" ></Image>-->
@@ -136,28 +142,7 @@
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="1" Grid.Column="1" Background="White">
                         <ScrollViewer x:Name="TaskList" VerticalScrollBarVisibility="Visible">
-                            <!--<ItemsControl x:Name="UserList" ItemTemplate="{StaticResource UserDataTemplate}" AlternationCount="9999"/>-->
-                            <StackPanel Orientation="Horizontal" Height="60" HorizontalAlignment="Left" VerticalAlignment="top">
-                                <!--tekst-->
-                                <StackPanel Orientation="Horizontal"  Width="580" HorizontalAlignment="Left" VerticalAlignment="top">
-                                    <Border BorderThickness="1" BorderBrush="Black">
-                                        <Label Height="58" Width="100" Content="{Binding Id_Skladnik}" FontSize="12" Padding="15,10,0,0"/>
-                                    </Border>
-                                    <StackPanel Orientation="Horizontal" Width="480" HorizontalAlignment="Left" VerticalAlignment="top">
-                                        <Border BorderThickness="1" BorderBrush="Black">
-                                            <Label Height="58" Width="478" Content="{Binding Nazwa}" FontSize="18"/>
-                                        </Border>
-                                    </StackPanel>
-                                </StackPanel>
-                                <!--Przyciski-->
-                                <StackPanel Orientation="Vertical" Width="76" Height="60" HorizontalAlignment="Left" VerticalAlignment="top">
-                                    <Border BorderThickness="1" BorderBrush="Black">
-                                        <Button Click="dodaj_potrawe_Click" Height="58" Background="Yellow" Foreground="PaleVioletRed" Content="{Binding Id_Skladnik}">
-                                            <!--<Image Source="./X_sign.png" ></Image>-->
-                                        </Button>
-                                    </Border>
-                                </StackPanel>
-                            </StackPanel>
+                            <ItemsControl x:Name="UserList" ItemTemplate="{StaticResource UserDataTemplate}" AlternationCount="9999"/>
                         </ScrollViewer>
                     </Grid>
                 </Grid>

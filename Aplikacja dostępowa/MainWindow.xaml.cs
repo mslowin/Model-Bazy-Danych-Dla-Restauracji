@@ -145,7 +145,7 @@ namespace Restauracja_Bazy_Danych
             }
             catch (Exception ex)
             {
-                MessageBox.Show("A handled exception just occurred: " + ex.Message, "Exception Sample", MessageBoxButton.OK, MessageBoxImage.Warning);
+                _ = MessageBox.Show("A handled exception just occurred: " + ex.Message, "Exception Sample", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             Console.WriteLine("OK");
         }
